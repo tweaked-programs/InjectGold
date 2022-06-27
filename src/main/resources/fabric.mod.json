@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "injectgold",
+  "version": "${version}",
+
+  "name": "InjectGold",
+  "description": "This mod follows the philosophy that not only apples or carrots may be injected with gold!",
+  "authors": [
+    "Sammy.K"
+  ],
+  "contact": {
+    "homepage": "https://tweaked-programs.cc/",
+    "sources": "https://github.com/Tweaked-Programs"
+  },
+
+  "license": "MIT",
+  "icon": "assets/injectgold/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "cc.tweaked_programs.injectgold.Main"
+    ]
+  },
+  "mixins": [
+    "injectgold.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
