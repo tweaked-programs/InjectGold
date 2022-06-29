@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": { "item": "injectgold:golden_pufferfish" },
+    "title": "Hunger is not debatable",
+    "description": "Eat something golden that otherwise would not be edible.",
+    "frame": "task",
+    "show_toast": true,
+    "annouce_to_chat": true
+  },
+  "parent": "injectgold:craft_something",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "injectgold:golden_tropical_fish",
+            "injectgold:golden_pufferfish",
+            "injectgold:golden_rotten_flesh",
+            "injectgold:golden_spider_eye",
+            "injectgold:golden_fermented_spider_eye",
+            "injectgold:golden_diamond",
+            "injectgold:golden_emerald",
+            "injectgold:golden_turtle_egg"
+          ]
+        }
+      }
+    }
+  }
+}

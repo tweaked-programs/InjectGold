@@ -20,6 +20,11 @@
   "entrypoints": {
     "main": [
       "cc.tweaked_programs.injectgold.Main"
+    ],
+    "client": [
+      {
+        "value": "cc.tweaked_programs.injectgold.Client"
+      }
     ]
   },
   "mixins": [

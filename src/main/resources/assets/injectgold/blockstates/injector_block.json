@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "injectgold:block/injector_block" }
+    }
+}

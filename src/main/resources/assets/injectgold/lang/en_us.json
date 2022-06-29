@@ -1,6 +1,14 @@
 {
     "itemGroup.injectgold.main": "InjectGold",
+
     "block.injectgold.golden_cake": "Golden Cake",
+    "block.injectgold.injector_block": "Injector",
+
+    "item.injectgold.type.tooltip": "Type: ",
+    "item.injectgold.meat.tooltip": "Meat",
+    "item.injectgold.sweet.tooltip": "Sweet",
+    "item.injectgold.vegan.tooltip": "Vegan",
+    "item.injectgold.weird.tooltip": "???",
 
     "item.injectgold.golden_cooked_salmon": "Golden Cooked Salmon",
     "item.injectgold.golden_cooked_cod": "Golden Cooked Cod",
@@ -26,5 +34,8 @@
     "item.injectgold.golden_pufferfish": "Golden Pufferfish",
     "item.injectgold.golden_rotten_flesh": "Golden Rotten Flesh",
     "item.injectgold.golden_spider_eye": "Golden Spider Eye",
-    "item.injectgold.golden_fermented_spider_eye": "Golden Fermented Spider Eye"
+    "item.injectgold.golden_fermented_spider_eye": "Golden Fermented Spider Eye",
+    "item.injectgold.golden_diamond": "Golden Diamond",
+    "item.injectgold.golden_emerald": "Golden Emerald",
+    "item.injectgold.golden_turtle_egg": "Golden Turtle Egg"
 }
