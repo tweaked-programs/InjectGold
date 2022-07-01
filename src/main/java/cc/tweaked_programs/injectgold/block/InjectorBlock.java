@@ -7,18 +7,29 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.state.StateManager;
+import net.minecraft.tag.ItemTags;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+
+import static net.minecraft.state.property.Properties.HORIZONTAL_FACING;
 
 public class InjectorBlock extends BlockWithEntity {
     protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
-    public InjectorBlock(Settings settings) { super(settings.nonOpaque()); }
+
+    public InjectorBlock(Settings settings) {
+        super(settings);
+        setDefaultState(this.stateManager.getDefaultState().with(HORIZONTAL_FACING, Direction.NORTH));
+    }
 
     public BlockEntity InjectorBlock(BlockPos pos, BlockState state) { return new InjectorBlockEntity(pos, state); }
 
@@ -28,28 +39,68 @@ public class InjectorBlock extends BlockWithEntity {
     }
 
     @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult blockHitResult) {
+        if (world.isClient) return ActionResult.SUCCESS;
+        InjectorBlockEntity entity = (InjectorBlockEntity)world.getBlockEntity(pos);
+
+        if (player.getStackInHand(hand).isIn(Main.INJECTOR_FUEL)) {
+            if (entity.addFuel()) {
+                int count = player.getStackInHand(hand).getCount();
+                player.getStackInHand(hand).setCount(count-1);
+                entity.markDirty();
+                return ActionResult.SUCCESS;
+            }
+            return ActionResult.PASS;
+        } else if (!entity.getStack(1).isEmpty())  {
+            player.getInventory().offerOrDrop(entity.getStack(1));
+            entity.removeStack(1);
+        } else if (entity.getStack(0).isEmpty()) {
+            entity.setStack(0, player.getStackInHand(hand).copy());
+            player.getStackInHand(hand).setCount(0);
+        } else {
+            player.getInventory().offerOrDrop(entity.getStack(0));
+            entity.removeStack(0);
+        }
+        entity.markDirty();
+        return ActionResult.SUCCESS;
+    }
+
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, Main.INJECTOR_BLOCK_ENTITY, (world1, pos, state1, be) -> InjectorBlockEntity.tick(world1, pos, state1, be));
+    }
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.isOf(newState.getBlock())) {
+            return;
+        }
+        BlockEntity entity = world.getBlockEntity(pos);
+        if (entity instanceof Inventory) {
+            ItemScatterer.spawn(world, pos, (Inventory)(entity));
+            world.updateComparators(pos, this);
+        }
+        super.onStateReplaced(state, world, pos, newState, moved);
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(HORIZONTAL_FACING, rotation.rotate(state.get(HORIZONTAL_FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state.rotate(mirror.getRotation(state.get(HORIZONTAL_FACING)));
+    }
+
+    @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
 
-
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult blockHitResult) {
-        if (world.isClient) return ActionResult.SUCCESS;
-        InjectorBlockEntity blockEntity = (InjectorBlockEntity)world.getBlockEntity(pos);
-
-        if (!player.getStackInHand(hand).isEmpty()) {
-            if (blockEntity.getStack(0).isEmpty()) {
-                blockEntity.setStack(0, player.getStackInHand(hand).copy());
-                player.getStackInHand(hand).setCount(0);
-            }
-        } else if (!blockEntity.getStack(0).isEmpty()) {
-            player.getInventory().offerOrDrop(blockEntity.getStack(0));
-            blockEntity.removeStack(0);
-        }
-
-        blockEntity.markDirty();
-        return ActionResult.SUCCESS;
+    protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+        stateManager.add(HORIZONTAL_FACING);
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -57,7 +108,7 @@ public class InjectorBlock extends BlockWithEntity {
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, Main.INJECTOR_BLOCK_ENTITY, (world1, pos, state1, be) -> InjectorBlockEntity.tick(world1, pos, state1, be));
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState().with(HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
     }
 }

@@ -5,6 +5,8 @@ import cc.tweaked_programs.injectgold.block.InjectorBlock;
 import cc.tweaked_programs.injectgold.entity.InjectorBlockEntity;
 import cc.tweaked_programs.injectgold.item.FoodRegister;
 import cc.tweaked_programs.injectgold.item.FoodContainer;
+import cc.tweaked_programs.injectgold.recipe.InjectRecipe;
+import cc.tweaked_programs.injectgold.recipe.InjectRecipeSerializer;
 import cc.tweaked_programs.injectgold.statuseffect.GoldRushStatusEffect;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -17,8 +19,13 @@ import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.CookingRecipeSerializer;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
@@ -31,6 +38,7 @@ public class Main implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	public static ItemGroup injectfood_group;
+	public static final TagKey<Item> INJECTOR_FUEL = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "injector_fuel"));
 	public static final CakeBlock GOLDEN_CAKE = new GoldenCakeBlock(FabricBlockSettings.of(Material.CAKE).strength(1.0f));
 	public static final StatusEffect GOLDRUSH = new GoldRushStatusEffect();
 	public static final Block INJECTOR_BLOCK = new InjectorBlock(FabricBlockSettings.of(Material.STONE).strength(1.0f));
@@ -38,6 +46,10 @@ public class Main implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		/* Recipe */
+		Registry.register(Registry.RECIPE_SERIALIZER, InjectRecipeSerializer.ID, InjectRecipeSerializer.INSTANCE);
+		Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, InjectRecipe.Type.ID), InjectRecipe.Type.INSTANCE);
+
 		/* Block(Entity)s */
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "golden_cake"), GOLDEN_CAKE);
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "injector_block"), INJECTOR_BLOCK);
