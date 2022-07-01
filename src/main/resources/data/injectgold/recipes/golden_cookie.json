@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:cookie",
+  "output": "injectgold:golden_cookie",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

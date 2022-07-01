@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:beetroot",
+  "output": "injectgold:golden_beetroot",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

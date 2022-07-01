@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:turtle_egg",
+  "output": "injectgold:golden_turtle_egg",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

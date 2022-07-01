@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:chorus_fruit",
+  "output": "injectgold:golden_chorus_fruit",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

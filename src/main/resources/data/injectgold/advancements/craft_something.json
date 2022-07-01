@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": { "item": "injectgold:golden_cake" },
-    "title": "The Golden Age",
+    "title": "More Golden Food!",
     "description": "We do not talk from the mistakes of Midas here.",
     "frame": "task",
     "show_toast": true,
@@ -22,19 +22,19 @@
               "injectgold:golden_cooked_porkchop",
               "injectgold:golden_cooked_mutton",
               "injectgold:golden_cooked_rabbit",
-
+                      
               "injectgold:golden_cookie",
               "injectgold:golden_pumpkin_pie",
               "injectgold:golden_sweet_berries",
               "injectgold:golden_glow_berries",
-
+                      
               "injectgold:golden_bread",
               "injectgold:golden_baked_potato",
               "injectgold:golden_poisonous_potato",
               "injectgold:golden_beetroot",
               "injectgold:golden_chorus_fruit",
               "injectgold:golden_dried_kelp",
-
+                      
               "injectgold:golden_tropical_fish",
               "injectgold:golden_pufferfish",
               "injectgold:golden_rotten_flesh",

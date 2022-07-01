@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:poisonous_potato",
+  "output": "injectgold:golden_poisonous_potato",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

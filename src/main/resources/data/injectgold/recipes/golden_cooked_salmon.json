@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:cooked_salmon",
+  "output": "injectgold:golden_cooked_salmon",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

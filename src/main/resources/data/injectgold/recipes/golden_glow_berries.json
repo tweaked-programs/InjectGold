@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:glow_berries",
+  "output": "injectgold:golden_glow_berries",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

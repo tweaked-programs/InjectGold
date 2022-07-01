@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:diamond",
+  "output": "injectgold:golden_diamond",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

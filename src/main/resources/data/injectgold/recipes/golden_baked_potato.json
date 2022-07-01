@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:baked_potato",
+  "output": "injectgold:golden_baked_potato",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

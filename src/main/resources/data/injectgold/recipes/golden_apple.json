@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:apple",
+  "output": "minecraft:golden_apple",
+  "outputAmount": "1",
+  "requiredGoldAmount": "2"
+}

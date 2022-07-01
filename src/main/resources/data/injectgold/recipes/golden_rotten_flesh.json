@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:rotten_flesh",
+  "output": "injectgold:golden_rotten_flesh",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

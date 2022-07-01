@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:dried_kelp",
+  "output": "injectgold:golden_dried_kelp",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

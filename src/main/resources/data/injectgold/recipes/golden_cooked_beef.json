@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:cooked_beef",
+  "output": "injectgold:golden_cooked_beef",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

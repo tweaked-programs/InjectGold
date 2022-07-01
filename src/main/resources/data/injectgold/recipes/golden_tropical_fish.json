@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:tropical_fish",
+  "output": "injectgold:golden_tropical_fish",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

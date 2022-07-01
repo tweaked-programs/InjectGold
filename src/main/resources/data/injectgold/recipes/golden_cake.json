@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:cake",
+  "output": "injectgold:golden_cake",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

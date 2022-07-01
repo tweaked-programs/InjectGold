@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:spider_eye",
+  "output": "injectgold:golden_spider_eye",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}

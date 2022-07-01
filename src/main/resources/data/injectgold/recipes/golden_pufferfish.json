@@ -1,0 +1,7 @@
+{
+  "type": "injectgold:inject_recipe",
+  "input" : "minecraft:pufferfish",
+  "output": "injectgold:golden_pufferfish",
+  "outputAmount": "1",
+  "fuelAmount": "2"
+}
