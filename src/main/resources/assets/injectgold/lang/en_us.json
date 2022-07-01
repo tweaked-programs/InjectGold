@@ -3,6 +3,13 @@
 
     "block.injectgold.golden_cake": "Golden Cake",
     "block.injectgold.injector_block": "Injector",
+    "block.injectgold.injector_block.display.ready": "Ready!",
+    "block.injectgold.injector_block.display.done": "Done!",
+    "block.injectgold.injector_block.display.fuel": "Filled Gold: ",
+    "block.injectgold.injector_block.display.error.404": "Not Available",
+    "block.injectgold.injector_block.display.error.lowspec": "Need upgrade",
+
+    "category.injectgold.fuel.needed": "Gold needed: ",
 
     "item.injectgold.type.tooltip": "Type: ",
     "item.injectgold.meat.tooltip": "Meat",

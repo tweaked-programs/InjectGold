@@ -1,5 +1,8 @@
 {
     "variants": {
-        "": { "model": "injectgold:block/injector_block" }
+        "facing=north": { "model": "injectgold:block/injector_block", "uvlock": true },
+        "facing=east": { "model": "injectgold:block/injector_block", "y":  90, "uvlock": true },
+        "facing=south": { "model": "injectgold:block/injector_block", "y": 180, "uvlock": true },
+        "facing=west": { "model": "injectgold:block/injector_block", "y": 270, "uvlock": true }
     }
 }
