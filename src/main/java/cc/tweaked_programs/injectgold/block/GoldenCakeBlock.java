@@ -1,7 +1,6 @@
 package cc.tweaked_programs.injectgold.block;
 
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,12 +41,12 @@ public class GoldenCakeBlock extends CakeBlock {
         player.getHungerManager().add(4, 0.5f);
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 1000));
         int i = state.get(BITES);
-        world.emitGameEvent((Entity)player, GameEvent.EAT, pos);
+        world.emitGameEvent(player, GameEvent.EAT, pos);
         if (i < 6) {
-            world.setBlockState(pos, (BlockState)state.with(BITES, i + 1), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(BITES, i + 1), Block.NOTIFY_ALL);
         } else {
             world.removeBlock(pos, false);
-            world.emitGameEvent((Entity)player, GameEvent.BLOCK_DESTROY, pos);
+            world.emitGameEvent(player, GameEvent.BLOCK_DESTROY, pos);
         }
         return ActionResult.SUCCESS;
     }

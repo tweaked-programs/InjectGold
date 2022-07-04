@@ -1,29 +1,30 @@
 package cc.tweaked_programs.injectgold.block;
 
-import cc.tweaked_programs.injectgold.Main;
-import cc.tweaked_programs.injectgold.entity.InjectorBlockEntity;
+import cc.tweaked_programs.injectgold.block.entity.InjectorBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
-import net.minecraft.tag.ItemTags;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import static cc.tweaked_programs.injectgold.Main.MOD_ID;
 import static net.minecraft.state.property.Properties.HORIZONTAL_FACING;
 
 public class InjectorBlock extends BlockWithEntity {
+    public static final TagKey<Item> FUEL = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "injector_fuel"));
     protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
 
     public InjectorBlock(Settings settings) {
@@ -31,7 +32,7 @@ public class InjectorBlock extends BlockWithEntity {
         setDefaultState(this.stateManager.getDefaultState().with(HORIZONTAL_FACING, Direction.NORTH));
     }
 
-    public BlockEntity InjectorBlock(BlockPos pos, BlockState state) { return new InjectorBlockEntity(pos, state); }
+    //public BlockEntity InjectorBlock(BlockPos pos, BlockState state) { return new InjectorBlockEntity(pos, state); }
 
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -43,7 +44,7 @@ public class InjectorBlock extends BlockWithEntity {
         if (world.isClient) return ActionResult.SUCCESS;
         InjectorBlockEntity entity = (InjectorBlockEntity)world.getBlockEntity(pos);
 
-        if (player.getStackInHand(hand).isIn(Main.INJECTOR_FUEL)) {
+        if (player.getStackInHand(hand).isIn(FUEL)) {
             if (entity.addFuel()) {
                 int count = player.getStackInHand(hand).getCount();
                 player.getStackInHand(hand).setCount(count-1);
@@ -67,7 +68,7 @@ public class InjectorBlock extends BlockWithEntity {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, Main.INJECTOR_BLOCK_ENTITY, (world1, pos, state1, be) -> InjectorBlockEntity.tick(world1, pos, state1, be));
+        return checkType(type, BlockRegister.INJECTOR_BLOCK_ENTITY, InjectorBlockEntity::tick);
     }
 
     @Override

@@ -3,6 +3,7 @@
 
     "block.injectgold.golden_cake": "Golden Cake",
     "block.injectgold.injector_block": "Injector",
+    "block.injectgold.groblun": "Groblun",
     "block.injectgold.injector_block.display.ready": "Ready!",
     "block.injectgold.injector_block.display.done": "Done!",
     "block.injectgold.injector_block.display.fuel": "Filled Gold: ",

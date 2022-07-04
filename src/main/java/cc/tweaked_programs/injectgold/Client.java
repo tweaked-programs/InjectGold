@@ -1,5 +1,6 @@
 package cc.tweaked_programs.injectgold;
 
+import cc.tweaked_programs.injectgold.block.BlockRegister;
 import cc.tweaked_programs.injectgold.client.InjectorBlockEntityRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -12,7 +13,7 @@ import net.minecraft.client.render.RenderLayer;
 public class Client implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlock(Main.INJECTOR_BLOCK, RenderLayer.getCutout());
-        BlockEntityRendererRegistry.register(Main.INJECTOR_BLOCK_ENTITY, InjectorBlockEntityRenderer::new);
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegister.INJECTOR_BLOCK, RenderLayer.getCutout());
+        BlockEntityRendererRegistry.register(BlockRegister.INJECTOR_BLOCK_ENTITY, InjectorBlockEntityRenderer::new);
     }
 }

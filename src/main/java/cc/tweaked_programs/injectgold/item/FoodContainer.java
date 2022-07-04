@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -19,7 +18,7 @@ public class FoodContainer {
     private GoldenFood item;
     private final Identifier KEY;
     private final char TYPE;
-    private int hunger;
+    private final int hunger;
     private final List<Pair<StatusEffectInstance, Float>> statusEffects = Lists.newArrayList();
 
 
@@ -36,37 +35,37 @@ public class FoodContainer {
 
 
     public GoldenFood buildItem() {
-        FabricItemSettings settings = new FabricItemSettings().group(Main.injectfood_group).rarity(Rarity.COMMON);
+        FabricItemSettings settings = new FabricItemSettings().group(Main.INJECTGOLD_GROUP).rarity(Rarity.COMMON);
         for (Pair<StatusEffectInstance, Float> effect : statusEffects)
             stats.statusEffect(effect.getFirst(), effect.getSecond());
         switch (TYPE) {
-            case ('m'):
-                stats.hunger(hunger+1);
+            case ('m') -> {
+                stats.hunger(hunger + 1);
                 stats.saturationModifier(1.1f);
                 stats.meat();
                 settings.group(ItemGroup.FOOD);
                 settings.rarity(Rarity.UNCOMMON);
-                break;
-            case ('s'):
-                stats.hunger(hunger+2);
+            }
+            case ('s') -> {
+                stats.hunger(hunger + 2);
                 stats.saturationModifier(0.75f);
                 stats.snack();
-                stats.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300*hunger, (int)(hunger/4)), 0.35f);
+                stats.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300 * hunger, (hunger / 4)), 0.35f);
                 settings.group(ItemGroup.FOOD);
-                break;
-            case ('v'):
+            }
+            case ('v') -> {
                 stats.hunger(hunger);
                 stats.saturationModifier(1.15f);
-                stats.statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20*hunger), 0.1f);
+                stats.statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20 * hunger), 0.1f);
                 settings.group(ItemGroup.FOOD);
-                break;
-            default:
+            }
+            default -> {
                 stats.hunger(hunger);
                 stats.saturationModifier(0.5f);
                 stats.alwaysEdible();
                 settings.group(ItemGroup.FOOD);
                 settings.rarity(Rarity.EPIC);
-                break;
+            }
         }
         item = new GoldenFood(KEY.getPath(), settings.food(stats.build()));
         return item;

@@ -10,20 +10,19 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GoldenFood extends Item {
-    private final String ID;
     private final Pair<String, Formatting> TYPE;
 
     public GoldenFood(String id, Settings settings) {
         super(settings);
-        this.ID = id;
-        this.TYPE = FoodRegister.getType(ID);
+        this.TYPE = ItemRegister.getType(id);
     }
 
     @Override
     public boolean hasGlint(ItemStack stack) {
-        return TYPE.getFirst()=="weird";
+        return Objects.equals(TYPE.getFirst(), "weird");
     }
 
     @Override

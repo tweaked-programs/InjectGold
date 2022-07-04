@@ -1,8 +1,7 @@
 package cc.tweaked_programs.injectgold.client;
 
-import cc.tweaked_programs.injectgold.Main;
 import cc.tweaked_programs.injectgold.block.InjectorBlock;
-import cc.tweaked_programs.injectgold.entity.InjectorBlockEntity;
+import cc.tweaked_programs.injectgold.block.entity.InjectorBlockEntity;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -11,13 +10,10 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3f;
 
 import java.util.ArrayList;
@@ -39,29 +35,28 @@ public class InjectorBlockEntityRenderer implements BlockEntityRenderer<Injector
 
         int rot = 0;
         switch (dir) {
-            case WEST:
+            case WEST -> {
                 rot = 270;
-                matrices.translate(0.06,-0.79,-0.16);
+                matrices.translate(0.06, -0.79, -0.16);
                 matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-90));
-                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(180-22.5f));
-                break;
-            case EAST:
+                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(180 - 22.5f));
+            }
+            case EAST -> {
                 rot = 90;
-                matrices.translate(0.94,-0.79,0.16);
+                matrices.translate(0.94, -0.79, 0.16);
                 matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90));
-                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(180-22.5f));
-                break;
-            case NORTH:
-                rot = 0;
-                matrices.translate(0.66,-0.79,-0.44);
+                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(180 - 22.5f));
+            }
+            case NORTH -> {
+                matrices.translate(0.66, -0.79, -0.44);
                 matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180));
                 matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(-22.5f));
-                break;
-            case SOUTH:
+            }
+            case SOUTH -> {
                 rot = 180;
-                matrices.translate(0.335,-0.79,0.43);
-                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(180-22.5f));
-                break;
+                matrices.translate(0.335, -0.79, 0.43);
+                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(180 - 22.5f));
+            }
         }
 
         matrices.scale(0.003f,0.003f,0.003f);

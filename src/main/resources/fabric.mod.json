@@ -25,7 +25,7 @@
         "cc.tweaked_programs.injectgold.Client"
     ],
     "rei_client": [
-        "cc.tweaked_programs.injectgold.integration.InjectGoldREIPlugin"
+      "cc.tweaked_programs.injectgold.integration.REIPlugin"
       ]
     },
   "mixins": [

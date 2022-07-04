@@ -7,7 +7,6 @@ import com.google.gson.JsonSyntaxException;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -17,7 +16,7 @@ public class InjectRecipeSerializer implements RecipeSerializer<InjectRecipe> {
     public static final InjectRecipeSerializer INSTANCE = new InjectRecipeSerializer();
     public static final Identifier ID = new Identifier(Main.MOD_ID, "inject_recipe");
 
-    class InjectRecipeJsonFormat {
+    static class InjectRecipeJsonFormat {
         String input;
         String output;
         int outputAmount;
@@ -35,8 +34,6 @@ public class InjectRecipeSerializer implements RecipeSerializer<InjectRecipe> {
         if (recipeJson.outputAmount < 1) recipeJson.outputAmount = 1;
         if (recipeJson.fuelAmount < 1) recipeJson.fuelAmount = 1;
         else if (recipeJson.fuelAmount > 128) recipeJson.fuelAmount = 128;
-        if (recipeJson.outputAmount < 1) recipeJson.outputAmount = 1;
-        else if (recipeJson.outputAmount > 128) recipeJson.outputAmount = 128;
 
         Item inputItem = Registry.ITEM.getOrEmpty(new Identifier(recipeJson.input))
                 .orElseThrow(() -> new JsonSyntaxException("No such item: " + recipeJson.input));

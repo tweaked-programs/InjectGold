@@ -53,7 +53,7 @@ public class InjectRecipe implements Recipe<Inventory> {
         return amount;
     }
 
-    public int getFuelAmount() { return fuelAmount; };
+    public int getFuelAmount() { return fuelAmount; }
 
     @Override
     public Identifier getId() {

@@ -16,22 +16,22 @@ public class GoldRushStatusEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (entity instanceof PlayerEntity) {
+        /*if (entity instanceof PlayerEntity) {
 
-        }
+        }*/
     }
 
     @Override
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
-        if (entity instanceof PlayerEntity) {
+        /*if (entity instanceof PlayerEntity) {
 
-        }
+        }*/
     }
 
     @Override
     public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
-        if (entity instanceof PlayerEntity) {
+        /*if (entity instanceof PlayerEntity) {
             //((PlayerEntity) entity).
-        }
+        }*/
     }
 }
